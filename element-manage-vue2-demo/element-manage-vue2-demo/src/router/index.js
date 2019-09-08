@@ -9,39 +9,43 @@ import AddShop from '@/views/AddShop'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      redirect: '/login',
-    },
-    {
-      path: '/login',
-      name: Login,
-      component: Login
-    },
-    {
-      path: '/register',
-      name: Register,
-      component: Register
-    },
-    {
-      path: '/manage',
-      name: Manage,
-      component: Manage,
-      children:[
-        {
-          path:'addShop',
-          name: AddShop,
-          component:AddShop
-        }
-      ]
+const routes = [
+  {
+    path: '/',
+    redirect: '/manage',
+  },
+  {
+    path: '/login',
+    name: Login,
+    component: Login
+  },
+  {
+    path: '/register',
+    name: Register,
+    component: Register
+  },
+  {
+    path: '/manage',
+    name: Manage,
+    component: Manage,
+    children:[
+      {
+        path:'addShop',
+        name: AddShop,
+        component:AddShop
+      }
+    ]
 
-    },
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+  },
+  {
+    path: '/helloworld',
+    name: 'HelloWorld',
+    component: HelloWorld
+  }
+]
+
+export default new Router({
+  routes,
+  // strict: process.env.NODE_ENV !== 'production',
+  strict: process.env.NODE_ENV !== 'production',
 })

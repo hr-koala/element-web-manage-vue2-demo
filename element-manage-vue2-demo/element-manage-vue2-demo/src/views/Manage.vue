@@ -60,7 +60,7 @@
         name: "Manage",
       data(){
           return{
-
+            isCollapse: false,
           }
       },
       computed: {
@@ -72,7 +72,6 @@
 </script>
 
 <style scoped>
-  @import '../style/mixin';
   .manage_page{
 
   }
