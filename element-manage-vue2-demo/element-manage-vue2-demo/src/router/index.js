@@ -8,6 +8,8 @@ import Manage from '@/views/Manage'
 
 import Home from '@/views/Home'
 import AddShop from '@/views/AddShop'
+import AddGoods from '@/views/AddGoods'
+import UserList from '@/views/UserList'
 
 Vue.use(Router)
 
@@ -39,11 +41,23 @@ const routes = [
         meta: [],
       },
       {
-        path:'',
-        // path:'/addShop',
+        path:'/addShop',
         name: AddShop,
         component:AddShop,
         meta: ['添加数据', '添加商铺'],
+      },
+      {
+        path:'',
+        // path:'/addGoods',
+        name: AddGoods,
+        component:AddGoods,
+        meta: ['添加数据', '添加商品'],
+      },
+      {
+        path: '/userList',
+        name: UserList,
+        component: UserList,
+        meta: ['数据管理', '用户列表'],
       }
     ]
 

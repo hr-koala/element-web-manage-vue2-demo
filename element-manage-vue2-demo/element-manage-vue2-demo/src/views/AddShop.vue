@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="addShop_page">
     <header-top></header-top>
     <el-row style="margin-top: 20px;">
       <el-col :span="14" :offset="4">
