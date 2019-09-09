@@ -5,6 +5,8 @@ import HelloWorld from '@/components/HelloWorld'
 import Login from '@/views/Login'
 import Register from '@/views/Register'
 import Manage from '@/views/Manage'
+
+import Home from '@/views/Home'
 import AddShop from '@/views/AddShop'
 
 Vue.use(Router)
@@ -30,9 +32,18 @@ const routes = [
     component: Manage,
     children:[
       {
-        path:'addShop',
+        path:'/home',
+        // path:'',
+        name: Home,
+        component:Home,
+        meta: [],
+      },
+      {
+        path:'',
+        // path:'/addShop',
         name: AddShop,
-        component:AddShop
+        component:AddShop,
+        meta: ['添加数据', '添加商铺'],
       }
     ]
 
