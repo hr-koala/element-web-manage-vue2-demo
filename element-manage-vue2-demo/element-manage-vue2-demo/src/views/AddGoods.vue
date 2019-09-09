@@ -6,8 +6,8 @@
         <header class="form_header">选择食品种类</header>
         <el-form :model="categoryForm" :rules="rules" ref="categoryForm" label-width="110px" class="categoryForm">
           <el-form-item label="食品种类" class="category_select">
-            <el-select v-model="categoryForm.categorySelect" :placeholder="selectValue.lable" style="width: 100%;">
-              <el-option v-for="item,index in categoryForm.categoryList" :key="item.value" :label="item.lable" :value="item.value"></el-option>
+            <el-select v-model="categoryForm.categorySelect" :placeholder="selectValue.label" style="width: 100%;">
+              <el-option v-for="item,index in categoryForm.categoryList" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </el-form-item>
           <el-row class="add_category_row" :class="showAddCategory? 'showEdit': ''" >
@@ -23,48 +23,36 @@
               </el-form-item>
             </div>
           </el-row>
-
-        </el-form>
-        <el-form :model="categoryForm" ref="categoryForm" label-width="110px" class="form">
-
           <div class="add_category_button" @click="addCategoryFun">
             <i class="el-icon-caret-top edit_icon" v-if="showAddCategory"></i>
-            <i class="el-icon-caret-bottom edit_icon" v-else slot="icon"></i>
+            <i class="el-icon-caret-bottom efit_icon" v-else solt="icon"></i>
             <span>添加食品种类</span>
           </div>
         </el-form>
+
         <header class="form_header">添加食品</header>
-        <el-form :model="foodForm" :rules="foodrules" ref="foodForm" label-width="110px" class="form food_form">
-          <el-form-item label="食品名称" prop="name">
-            <el-input v-model="foodForm.name"></el-input>
+        <el-form :model="foodForm" ref="foodForm" class="form food_form" :rules="foodrules" label-width="110px" >
+          <el-form-item label="食品名称" :prop="name">
+            <el-input v-model="foodForm.name" :aria-placeholder="" ></el-input>
           </el-form-item>
-          <el-form-item label="食品活动" prop="activity">
-            <el-input v-model="foodForm.activity"></el-input>
+          <el-form-item label="食品活动" :prop="activity">
+            <el-input v-model="foodForm.activity" aria-placeholder=""></el-input>
           </el-form-item>
-          <el-form-item label="食品详情" prop="description">
-            <el-input v-model="foodForm.description"></el-input>
+          <el-form-item label="食品详情" :prop="description">
+            <el-input v-model="foodForm.description" aria-placeholder=""></el-input>
           </el-form-item>
-          <el-form-item label="上传食品图片">
-            <el-upload
-              class="avatar-uploader"
-              :action="baseUrl + '/v1/addimg/food'"
-              :show-file-list="false"
-              :on-success="uploadImg"
-              :before-upload="beforeImgUpload">
-              <img v-if="foodForm.image_path" :src="baseImgPath + foodForm.image_path" class="avatar">
+          <el-form-item label="上传食品图片" >
+            <el-upload class="avatar-uploader" :action="" :show-file-list="false" :on-success="uploadImgSuccess" :before-upload="beforeImgUpload" >
+              <el-image :src="" v-if="foodForm.image_path" class="avatar"  ></el-image>
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
           </el-form-item>
-          <el-form-item label="食品特点">
-            <el-select v-model="foodForm.attributes" multiple placeholder="请选择">
-              <el-option
-                v-for="item in attributes"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
+          <el-form-item label="食品特点" class="">
+            <el-select v-model="foodForm.attributes" :placeholder="请选择" multiple style="width: 100%;">
+              <el-option v-for="item,index in attributes" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </el-form-item>
+
           <el-form-item label="食品规格">
             <el-radio class="radio" v-model="foodSpecs" label="one">单规格</el-radio>
             <el-radio class="radio" v-model="foodSpecs" label="more">多规格</el-radio>
@@ -109,6 +97,15 @@
             <el-button type="primary" @click="addFood('foodForm')">确认添加食品</el-button>
           </el-form-item>
         </el-form>
+
+
+
+
+              <!--:action="baseUrl + '/v1/addimg/food'"-->
+              <!--<img v-if="foodForm.image_path" :src="baseImgPath + foodForm.image_path" class="avatar">-->
+
+
+
         <el-dialog title="添加规格" v-model="dialogFormVisible">
           <el-form :rules="specsFormrules" :model="specsForm">
             <el-form-item label="规格" label-width="100px" prop="specs">
@@ -133,7 +130,7 @@
 
 <script>
   import HeaderTop from '@/components/HeaderTop'
-  import {cityGuess, addShop, searchplace, foodCategory} from '@/api/getData'
+  // import {cityGuess, addShop, searchplace, foodCategory} from '@/api/getData'
   import {baseUrl, baseImgPath} from '@/config/env'
   import api from '../api/api'
 
@@ -142,34 +139,36 @@
       return {
         baseUrl,
         baseImgPath,
+        categoryForm:{
+          categorySelect:'',
+          categoryList:[],
+          name:'',
+          description:'',
+        },
+        showAddCategory:false,
         restaurant_id: 1,
-        categoryForm: {
-          categoryList: [],
-          categorySelect: '',
-          name: '',
-          description: '',
-        },
-        foodForm: {
-          name: '',
-          description: '',
-          image_path: '',
-          activity: '',
+        foodForm:{
+          name:'',
+          activity:'',
+          description:'',
+          image_path:'',
           attributes: [],
-          specs: [{
-            specs: '默认',
-            packing_fee: 0,
-            price: 20,
-          }],
-
+          specs:[
+            { specs:'默认', packing_fee:0, price:20, }
+          ],
         },
+        foodSpecs: 'one',
+
         rules:{
 
         },
-        foodrules: {
+        foodrules:{
           name: [
             { required: true, message: '请输入食品名称', trigger: 'blur' },
           ],
         },
+
+
         attributes: [{
           value: '新',
           label: '新品'
@@ -178,7 +177,7 @@
           label: '招牌'
         },],
         showAddCategory: false,
-        foodSpecs: 'one',
+
         dialogFormVisible: false,
         specsForm: {
           specs: '',
@@ -228,8 +227,56 @@
       }
     },
     methods: {
-      submitCategoryForm(){
+      submitCategoryForm(categoryForm){
+        this.$refs[categoryForm].validate(async (valid) => {
+          if (valid) {
+            const params = {
+              name: this.categoryForm.name,
+              description: this.categoryForm.description,
+              restaurant_id: this.restaurant_id,
+            }
+            // try{
+            //   const result = await addCategory(params);
+            //   if (result.status == 1) {
+            //     this.initData();
+            //     this.categoryForm.name = '';
+            //     this.categoryForm.description = '';
+            //     this.showAddCategory = false;
+            //     this.$message({
+            //       type: 'success',
+            //       message: '添加成功'
+            //     });
+            //   }
+            // }catch(err){
+            //   console.log(err)
+            // }
+          } else {
+            this.$notify.error({
+              title: '错误',
+              message: '请检查输入是否正确',
+              offset: 100
+            });
+            return false;
+          }
+        });
+      },
+      addCategoryFun(){
 
+      },
+      uploadImgSuccess(res, file){
+        console.log(res, file)
+      },
+      beforeImgUpload(file) {
+        const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png');
+        const isLt2M = file.size / 1024 / 1024 < 2;
+
+        if (!isRightType) {
+          this.$message.error('上传头像图片只能是 JPG 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error('上传头像图片大小不能超过 2MB!');
+        }
+        return isRightType && isLt2M;
       },
       async initData(){
         try{
@@ -247,61 +294,18 @@
           console.log(err)
         }
       },
-      addCategoryFun(){
-        this.showAddCategory = !this.showAddCategory;
-      },
-      submitcategoryForm(categoryForm) {
-        this.$refs[categoryForm].validate(async (valid) => {
-          if (valid) {
-            const params = {
-              name: this.categoryForm.name,
-              description: this.categoryForm.description,
-              restaurant_id: this.restaurant_id,
-            }
-            try{
-              const result = await addCategory(params);
-              if (result.status == 1) {
-                this.initData();
-                this.categoryForm.name = '';
-                this.categoryForm.description = '';
-                this.showAddCategory = false;
-                this.$message({
-                  type: 'success',
-                  message: '添加成功'
-                });
-              }
-            }catch(err){
-              console.log(err)
-            }
-          } else {
-            this.$notify.error({
-              title: '错误',
-              message: '请检查输入是否正确',
-              offset: 100
-            });
-            return false;
-          }
-        });
-      },
-      uploadImg(res, file) {
-        if (res.status == 1) {
-          this.foodForm.image_path = res.image_path;
-        }else{
-          this.$message.error('上传图片失败！');
-        }
-      },
-      beforeImgUpload(file) {
-        const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png');
-        const isLt2M = file.size / 1024 / 1024 < 2;
+      // addCategoryFun(){
+      //   this.showAddCategory = !this.showAddCategory;
+      // },
 
-        if (!isRightType) {
-          this.$message.error('上传头像图片只能是 JPG 格式!');
-        }
-        if (!isLt2M) {
-          this.$message.error('上传头像图片大小不能超过 2MB!');
-        }
-        return isRightType && isLt2M;
+      uploadImg(res, file) {
+        // if (res.status == 1) {
+        //   this.foodForm.image_path = res.image_path;
+        // }else{
+        //   this.$message.error('上传图片失败！');
+        // }
       },
+
       addspecs(){
         this.foodForm.specs.push({...this.specsForm});
         this.specsForm.specs = '';
