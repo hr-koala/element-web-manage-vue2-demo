@@ -57,14 +57,14 @@ const routes = [
         meta: ['添加数据', '添加商品'],
       },
       {
-        path:'',
-        // path:'/shopList',
+        path:'/shopList',
         name: ShopList,
         component:ShopList,
         meta: ['数据管理', '商家列表'],
       },
       {
-        path: '/userList',
+        path:'',
+        // path: '/userList',
         name: UserList,
         component: UserList,
         meta: ['数据管理', '用户列表'],
