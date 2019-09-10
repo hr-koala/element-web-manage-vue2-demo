@@ -1,7 +1,7 @@
 <template>
   <div class="manage_page mainContainer">
-    <el-row>
-      <el-col :span="24">
+    <el-row >
+      <el-col :span="24" style="height: 60px; ;line-height: 60px;">
         <el-radio-group v-model="isCollapse">
           <el-radio-button :label="false">展开</el-radio-button>
           <el-radio-button :label="true">收起</el-radio-button>

@@ -566,7 +566,7 @@
   }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
   @import '../styles/mixin.less';
   .demo-formData {
 

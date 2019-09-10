@@ -9,6 +9,8 @@ import Manage from '@/views/Manage'
 import Home from '@/views/Home'
 import AddShop from '@/views/AddShop'
 import AddGoods from '@/views/AddGoods'
+import ShopList from '@/views/ShopList'
+
 import UserList from '@/views/UserList'
 
 Vue.use(Router)
@@ -47,11 +49,17 @@ const routes = [
         meta: ['添加数据', '添加商铺'],
       },
       {
-        path:'',
-        // path:'/addGoods',
+        path:'/addGoods',
         name: AddGoods,
         component:AddGoods,
         meta: ['添加数据', '添加商品'],
+      },
+      {
+        path:'',
+        // path:'/shopList',
+        name: ShopList,
+        component:ShopList,
+        meta: ['数据管理', '商家列表'],
       },
       {
         path: '/userList',
