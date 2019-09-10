@@ -10,8 +10,10 @@ import Home from '@/views/Home'
 import AddShop from '@/views/AddShop'
 import AddGoods from '@/views/AddGoods'
 import ShopList from '@/views/ShopList'
-
 import UserList from '@/views/UserList'
+import FoodList from '@/views/FoodList'
+import OrderList from '@/views/OrderList'
+
 
 Vue.use(Router)
 
@@ -66,7 +68,25 @@ const routes = [
         name: UserList,
         component: UserList,
         meta: ['数据管理', '用户列表'],
-      }
+      },
+      {
+        path: '/foodList',
+        name: FoodList,
+        component: FoodList,
+        meta: ['数据管理', '食品列表'],
+      },
+      {
+        path: '/orderList',
+        name: OrderList,
+        component: OrderList,
+        meta: ['数据管理', '订单列表'],
+      },
+      // {
+      //   path: '/adminList',
+      //     name:AdminList,
+      //   component: AdminList,
+      //   meta: ['数据管理', '管理员列表'],
+      // },
     ]
 
   },
