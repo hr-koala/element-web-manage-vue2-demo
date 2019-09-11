@@ -2,12 +2,12 @@
 
 <template>
   <div class="visitorpie">
-    <div id="visitorpie" class="" style="width: 90%;height:450px;"></div>
+    <div id="visitorpie" class="" style="width: 90%;height:800px;"></div>
   </div>
 </template>
 
 <script>
-  import echarts from 'echarts/lib/echarts';
+  import echarts from 'echarts/lib/echarts'
   // 引入柱状图
   import 'echarts/lib/chart/pie';
   import 'echarts/lib/component/title';
@@ -15,6 +15,11 @@
 
   export default {
     name: "VisitorPie",
+    data(){
+      return{
+        myChart:null,
+      }
+    },
     mounted(){
       this.myChart = echarts.init(document.getElementById('visitorpie'));
       this.initData();
@@ -73,7 +78,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import '../style/mixin';
+  @import '../styles/mixin.less';
   .visitorpie{
     display: flex;
     justify-content: center;

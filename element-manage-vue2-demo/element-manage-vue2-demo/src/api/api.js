@@ -182,19 +182,10 @@ var api = {
       })
     })
   },
-  // foodCategory:function () {
-  //     return new Promise(function(resolve, reject){
-  //       axios.get(api.baseUrl + '/shopping/v2/restaurant/category',{
-  //
-  //       }).then(res=>{
-  //         console.log(res)
-  //         resolve(res)
-  //       }).catch(err=>{
-  //         reject(err)
-  //       })
-  //     })
-  //   },
 
+  /**
+   * 删除餐馆
+   */
   deleteResturant: function (restaurant_id) {
     return new Promise(function (resolve, reject) {
       axios.delete(api.baseUrl + '/shopping/restaurant/' + restaurant_id, {
@@ -208,6 +199,9 @@ var api = {
       })
     })
   },
+  /**
+   * 更新餐馆信息
+   */
   updateResturant: function (data) {
     return new Promise(function (resolve, reject) {
       axios.post(api.baseUrl + '/shopping/updateshop', {
@@ -220,9 +214,287 @@ var api = {
       })
     })
   },
+  /**
+   * 获取用户数量
+   */
+  getUserCount:function(data){
+    return new Promise(function(resolve, reject){
+      axios.get(api.baseUrl + '/v1/users/count',{
+        params:{
+          data
+        }
+      }).then(res=>{
+        console.log(res)
+        resolve(res)
+      }).catch(err=>{
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 获取用户列表
+   */
+  getUserList:function(data){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/v1/users/list', {
+        params: {
+          // data
+          offset:data.offset,
+          limit: data.limit,
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+  * 获取食品数量
+  */
+getFoodsCount:function(data){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/shopping/v2/foods/count', {
+        params: {
+          // data
+          restaurant_id:data,
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 获取食品列表
+   */
+  getFoods:function(data){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/shopping/v2/foods', {
+        params: {
+          data
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+  * 获取餐馆详细信息
+  */
+
+  getResturantDetail :function(data){
+  return new Promise(function (resolve, reject) {
+    axios.get(api.baseUrl + '/shopping/restaurant/'+ data , {
+      params: {
+      }
+    }).then(res => {
+      console.log(res)
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+},
+  /**
+  * 获取menu详情
+  */
+getMenuById:function(data){
+  return new Promise(function (resolve, reject) {
+    axios.get(api.baseUrl + '/shopping/v2/menu/'+ data , {
+      params: {
+      }
+    }).then(res => {
+      console.log(res)
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+},
+  /**
+   * 获取menu列表
+   */
+  getMenu:function(data){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/shopping/v2/menu', {
+        params: {
+          restaurant_id: data.restaurant_id,
+          allMenu: data.allMenu,
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 删除食品
+   */
+  deleteFood:function(food_id){
+    return new Promise(function (resolve, reject) {
+      axios.delete(api.baseUrl + '/shopping/v2/food/' + food_id, {
+        params: {
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 更新食品信息
+   */
+  updateFood:function(data){
+    return new Promise(function (resolve, reject) {
+      axios.post(api.baseUrl + '/shopping/v2/updatefood' , {
+        data
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+
+  /**
+   * 获取订单数量
+   */
+getOrderCount:function(data){
+  return new Promise(function (resolve, reject) {
+    axios.get(api.baseUrl + '/bos/orders/count'+ '?restaurant_id='+ data.restaurant_id, {
+      params: {
+        // data
+      }
+    }).then(res => {
+      console.log(res)
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+},
+  /**
+   * 获取订单列表
+   */
+getOrderList:function(data){
+  return new Promise(function (resolve, reject) {
+    // axios.get(api.baseUrl + '/bos/orders'+ '?offset='+ data.offset+'&limit='+ data.limit+ '&restaurant_id='+ data.restaurant_id,{
+    axios.get(api.baseUrl + '/bos/orders',{
+      params: {
+        data
+      }
+    }).then(res => {
+      console.log(res)
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+},
+  /**
+   * 获取用户信息
+   */
+  getUserInfo:function(user_id){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/v1/user/' + user_id,{
+        params: {
+          // data
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 获取地址信息
+   */
+getAddressById:function(address_id){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/v1/addresse/' + address_id,{
+        params: {
+          // data
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 管理员数量
+   */
+  adminCount:function(){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/admin/count',{
+        params: {
+          // data
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
+  /**
+   * 管理员列表
+   */
+
+adminList:function(data){
+  return new Promise(function (resolve, reject) {
+    axios.get(api.baseUrl + '/admin/all' + '?offset='+ data.offset +'&limit='+ data.limit  ,{
+      params: {
+        // data
+      }
+    }).then(res => {
+      console.log(res)
+      resolve(res)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+},
+  /**
+   * 获取用户分布信息
+   */
+  getUserCity:function(data){
+    return new Promise(function (resolve, reject) {
+      axios.get(api.baseUrl + '/v1/user/city/count'  ,{
+        params: {
+          // data
+        }
+      }).then(res => {
+        console.log(res)
+        resolve(res)
+      }).catch(err => {
+        reject(err)
+      })
+    })
+  },
 
 
-  foodCategory11111: function (latitude, longitude) {
+
+
+
+foodCategory11111: function (latitude, longitude) {
     return new Promise(function (resolve, reject) {
       axios.post(api.baseUrl + '/shopping/v2/restaurant/category',
         data     //请求参数

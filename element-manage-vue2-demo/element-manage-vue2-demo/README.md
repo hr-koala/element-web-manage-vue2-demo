@@ -39,4 +39,6 @@ npm i babel-preset-es2015 babel-preset-stage-0 --save-dev
 npm i vue-resource -S
 npm i vuex -S
 
+npm i v-charts echarts -S
+npm install echarts --save
 
