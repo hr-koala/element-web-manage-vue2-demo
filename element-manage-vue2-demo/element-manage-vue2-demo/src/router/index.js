@@ -19,6 +19,9 @@ import AdminList from '@/views/AdminList'
 import Visitor from '@/views/Visitor'
 import NewMember from '@/views/NewMember'
 
+import UploadImg from '@/views/UploadImg'
+import VueEdit from '@/views/VueEdit'
+
 
 Vue.use(Router)
 
@@ -91,16 +94,29 @@ const routes = [
         component: AdminList,
         meta: ['数据管理', '管理员列表'],
       },
-      {path:'',
-        // path: '/visitor',
+      {
+        path: '/visitor',
         component: Visitor,
         name:Visitor,
         meta: ['图表', '用户分布'],
-      },{
+      },
+      {
         path: '/newMember',
         name:NewMember,
         component: NewMember,
         meta: ['图表', '用户数据'],
+      },
+      {
+        path: '/uploadImg',
+        name: UploadImg,
+        component: UploadImg,
+        meta: ['文本编辑', 'MarkDown'],
+      },
+      {path:'',
+        // path: '/vueEdit',
+        name: VueEdit,
+        component: VueEdit,
+        meta: ['编辑', '文本编辑'],
       },
     ]
 

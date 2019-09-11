@@ -114,6 +114,9 @@
     height: 100%;
     overflow: auto;
   }
+  .el-menu-vertical-demo{
+    height: 100%;
+  }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
