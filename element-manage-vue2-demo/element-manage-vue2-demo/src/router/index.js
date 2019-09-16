@@ -22,6 +22,11 @@ import NewMember from '@/views/NewMember'
 import UploadImg from '@/views/UploadImg'
 import VueEdit from '@/views/VueEdit'
 
+import AdminSet from '@/views/AdminSet'
+import SendMessage from '@/views/SendMessage'
+import Explain from '@/views/Explain'
+
+
 
 Vue.use(Router)
 
@@ -118,6 +123,21 @@ const routes = [
         component: VueEdit,
         meta: ['编辑', '文本编辑'],
       },
+      {
+        path: '/adminSet',
+        component: AdminSet,
+        meta: ['设置', '管理员设置'],
+      },
+      {
+        path: '/sendMessage',
+        component: SendMessage,
+        meta: ['设置', '发送通知'],
+      },
+      {
+        path: '/explain',
+        component: Explain,
+        meta: ['说明', '说明'],
+      }
     ]
 
   },
