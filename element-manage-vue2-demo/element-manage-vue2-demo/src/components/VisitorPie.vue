@@ -2,7 +2,7 @@
 
 <template>
   <div class="visitorpie">
-    <div id="visitorpie" class="" style="width: 90%;height:800px;"></div>
+    <div id="visitorpie" class="" style="width: 90%;height:500px;"></div>
   </div>
 </template>
 

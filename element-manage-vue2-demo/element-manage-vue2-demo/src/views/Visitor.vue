@@ -6,6 +6,8 @@
             element-loading-background="rgba(0, 0, 0, 0.8)">
       <el-col :span="20" :offset="2">
         <visitor-pie :pieData="pieData"></visitor-pie>
+
+        <visitor-chart1 :pieData = "pieData"></visitor-chart1>
       </el-col>
     </el-row>
   </div>
@@ -16,6 +18,7 @@
   import HeaderTop from '@/components/HeaderTop'
   import {baseUrl, baseImgPath} from "../config/env";
   import VisitorPie from '@/components/VisitorPie'
+  import VisitorChart1 from '@/components/VisitorChart1'
   // import {getUserCity} from '@/api/getData'
   import api from '../api/api'
 
@@ -52,6 +55,7 @@
     components: {
       HeaderTop,
       VisitorPie,
+      VisitorChart1,
     }
   }
 </script>

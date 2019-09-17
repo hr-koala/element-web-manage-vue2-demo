@@ -138,7 +138,7 @@
 </script>
 
 <style lang="less" scoped>
-  @import '../style/mixin';
+  @import '../styles/mixin';
   .line1{
     display: flex;
     justify-content: center;
