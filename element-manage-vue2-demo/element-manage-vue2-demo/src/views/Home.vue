@@ -35,6 +35,10 @@
           userCount: null,
           orderCount: null,
           adminCount: null,
+          userCountArray: [],
+          orderCountArray: [],
+          adminCountArray: [],
+
           allUserCount: null,
           allOrderCount: null,
           allAdminCount: null,
@@ -75,6 +79,7 @@
             console.log(data)
             const res = data.data
             this.userCount = res.count;
+            this.userCountArray.push(res)
           }).catch(err=>{
             console.log(err)
           })
@@ -84,6 +89,8 @@
             console.log(data)
             const res = data.data
             this.orderCount = res.count;
+
+            this.orderCountArray.push(res)
           }).catch(err=>{
             console.log(err)
           })
@@ -93,6 +100,7 @@
             console.log(data)
             const res = data.data
             this.adminCount = res.count;
+            this.adminCountArray.push(res)
           }).catch(err=>{
             console.log(err)
           })
@@ -107,7 +115,10 @@
           })
         },
         getOrderCountFun(){
-          api.getOrderCount().then(data=>{
+          const params = {
+            restaurant_id: 1
+          }
+          api.getOrderCount(params).then(data=>{
             console.log(data)
             const res = data.data
             this.allOrderCount = res.count;
@@ -127,14 +138,28 @@
         getSevenData() {
           const apiArr = [[], [], []];
           this.sevenDay.forEach(item => {
-            apiArr[0].push(this.userCountFun(item))
-            apiArr[1].push(this.orderCountFun(item))
-            apiArr[2].push(this.adminDayCountFun(item))
+            this.userCountFun(item)
+            this.orderCountFun(item)
+            this.adminDayCountFun(item)
+
+            // apiArr[0].push(this.userCount)
+            // apiArr[1].push(this.orderCount)
+            // apiArr[2].push(this.adminCount)
           })
-          const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
+          apiArr[0] = this.userCountArray
+          apiArr[1] = this.orderCountArray
+          apiArr[2] = this.adminCountArray
+
+          console.log(this.userCountArray)
+          console.log(apiArr[0])
+          const promiseArr = apiArr[0].concat(apiArr[1],apiArr[2])
+          // const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
+          // const promiseArr = [...this.userCountArray, ...this.orderCountArray, ...this.adminCountArray]
+          console.log(promiseArr)
           Promise.all(promiseArr).then(res => {
             const resArr = [[], [], []];
             res.forEach((item, index) => {
+              console.log(item, index)
               if (item.status == 1) {
                 resArr[Math.floor(index / 7)].push(item.count)
               }
