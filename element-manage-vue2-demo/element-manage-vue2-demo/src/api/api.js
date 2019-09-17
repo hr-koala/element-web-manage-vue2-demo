@@ -491,9 +491,11 @@ var api = {
    */
   getAdminInfo: function () {
     return new Promise(function (resolve, reject) {
-      axios.get(api.baseUrl + '/admin/info',
-        // data     //请求参数
-      ).then((res) => {
+      axios.get(api.baseUrl + '/admin/info', {
+          params: {
+            // data     //请求参数
+          }
+        }).then((res) => {
         console.log(res);
         resolve(res)
       }).catch((res) => {
