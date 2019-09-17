@@ -152,8 +152,8 @@
 
           console.log(this.userCountArray)
           console.log(apiArr[0])
-          const promiseArr = apiArr[0].concat(apiArr[1],apiArr[2])
-          // const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
+          // const promiseArr = apiArr[0].concat(apiArr[1],apiArr[2])
+          const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
           // const promiseArr = [...this.userCountArray, ...this.orderCountArray, ...this.adminCountArray]
           console.log(promiseArr)
           Promise.all(promiseArr).then(res => {
