@@ -51,8 +51,8 @@ const routes = [
     component: Manage,
     children:[
       {
-        path:'/home',
-        // path:'',
+        // path:'/home',
+        path:'',
         name: Home,
         component:Home,
         meta: [],
@@ -117,8 +117,8 @@ const routes = [
         component: UploadImg,
         meta: ['文本编辑', 'MarkDown'],
       },
-      {path:'',
-        // path: '/vueEdit',
+      {
+        path: '/vueEdit',
         name: VueEdit,
         component: VueEdit,
         meta: ['编辑', '文本编辑'],
