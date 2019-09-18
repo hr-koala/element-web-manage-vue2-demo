@@ -137,6 +137,9 @@
         },
         getSevenData() {
           const apiArr = [[], [], []];
+          this.userCountArray = []
+          this.orderCountArray = []
+          this.adminCountArray = []
           this.sevenDay.forEach(item => {
             this.userCountFun(item)
             this.orderCountFun(item)
@@ -151,9 +154,30 @@
           apiArr[2] = this.adminCountArray
 
           console.log(this.userCountArray)
-          console.log(apiArr[0])
+          console.log(apiArr[0] instanceof Array)
+
+          const promiseArr =[]
+          apiArr.map(item=>{
+            console.log(item)
+            item.forEach(item1=>{
+              console.log(item1)
+              return promiseArr.push(item1)
+            })
+
+          })
+          // apiArr[1].forEach(item=>{
+          //   console.log(item)
+          //   return promiseArr.push(item)
+          // })
+          // apiArr[2].map(item=>{
+          //   return promiseArr.push(item)
+          // })
+
+
+
+
           // const promiseArr = apiArr[0].concat(apiArr[1],apiArr[2])
-          const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
+          // const promiseArr = [...apiArr[0], ...apiArr[1], ...apiArr[2]]
           // const promiseArr = [...this.userCountArray, ...this.orderCountArray, ...this.adminCountArray]
           console.log(promiseArr)
           Promise.all(promiseArr).then(res => {
